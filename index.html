@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>Index of Alpine components</title>
+</head>
+<body>
+    <div
+        class="flex p-4"
+        x-data="{show: true}"
+    >
+        <button
+            class="font-bold"
+            @click="show = ! show" x-text="show ? 'Hide' : 'Show'"
+        ></button>
+        
+        <div
+            class="flex align-center justify-center space-x-4 w-full" 
+            x-show="show"
+        >
+            <a href="/">Home</a>
+            <a href="/">About</a>
+            <div
+                x-data="{ open: false }" 
+                @click.outside="open = false"
+            >
+                <button x-on:click="open = !open">
+                    Dropdown
+                    <ul
+                        class="bg-gray-500 absolute p-2"
+                        x-show="open"
+                    >
+                        <li><a href="#" class="text-gray-50">Edit Profile</a></li>
+                        <li><a href="#" class="text-gray-50">Settings</a></li>
+                        <li><a href="#" class="text-gray-50">Log Out</a></li>        
+                      </ul>
+                  </button>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="border bg-green-100 p-6"
+        x-data="{currentTab: 'first'}"
+    >
+
+        <div class="pb-3">
+            <button @click="currentTab = 'first'" :class="{ 'bg-gray-600 p-3 text-gray-50 rounded-md' : currentTab === 'first' }">First</button>
+            <button @click="currentTab = 'second'" :class="{ 'bg-gray-900 p-3 text-gray-50 rounded-md' : currentTab === 'second' }">Second</button>
+            <button @click="currentTab = 'third'" :class="{ 'bg-black p-3 text-gray-50 rounded-md' : currentTab === 'third' }">Third</button>
+        </div>
+
+        <div class="p-8 border border-black">
+            <div x-show="currentTab === 'first'">
+                <p>First</p>
+            </div>
+    
+            <div x-show="currentTab === 'second'">
+                <p>Second</p>
+            </div>
+    
+            <div x-show="currentTab === 'third'">
+                <p>Third</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
